@@ -11,6 +11,7 @@ Usage:
 
 import numpy as np
 import cv2
+import time
 
 # built-in module
 import sys
@@ -53,7 +54,10 @@ if __name__ == '__main__':
             color_img = np.zeros((height,width,3), np.uint8)
             color_img[:] = (0, 0, 255)
 
+        start_time = time.time()   #  save curr time to report duration
         seeds.iterate(converted_img, num_iterations)
+        duration = time.time() - start_time # calculate time elapsed
+        print("seed iterate time: ",duration)
 
         # retrieve the segmentation result
         labels = seeds.getLabels()
